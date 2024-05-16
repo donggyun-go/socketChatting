@@ -1,4 +1,4 @@
-package com.dg.chatting.Dto;
+package com.dg.chatting.dto;
 
 import lombok.Data;
 import lombok.ToString;
