@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +16,12 @@
 
         ws.onopen = () => {
             console.log('Connected to the WebSocket server');
+            sendMessage({
+                messageType: 'ENTER',
+                chatRoomId: 1,
+                senderId: 1,
+                message: 'User entered the chat room'
+            });
         };
 
         ws.onmessage = (event) => {
@@ -28,7 +33,13 @@
 
         function sendMessage() {
             const input = document.getElementById('message');
-            ws.send(input.value);
+            const chatMessage = {
+                messageType: 'TALK',
+                chatRoomId: 1,
+                senderId: 1,
+                message: input.value
+            };
+            ws.send(JSON.stringify(chatMessage));
             input.value = '';
         }
     </script>
