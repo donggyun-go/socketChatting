@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Home Page</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/login.css">
 </head>
 <body>
     <div class="container">
@@ -15,7 +15,7 @@
         
         <div class="section">
             <h3>친구찾기</h3>
-            <form action="searchFriend.jsp" method="post">
+            <form action="searchFriend" method="post">
                 <label for="searchId">ID or Email:</label>
                 <input type="text" id="searchId" name="searchId">
                 <button type="submit">친구찾기</button>
