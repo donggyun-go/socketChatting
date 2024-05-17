@@ -1,26 +1,37 @@
 package com.dg.chatting.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpSession;
+import com.dg.chatting.dto.FriendDto;
+import com.dg.chatting.service.FriendService;
 
 
 @Controller
 @RequestMapping("/home")
 public class HomeController {
+	
+	@Autowired
+	private FriendService friendService;
 
-    @GetMapping(value = "/")
+	@GetMapping(value = "/")
     public String home(HttpSession session, Model model) {
-        String username = (String) session.getAttribute("username");
-        if (username == null) {
+        String userId = (String) session.getAttribute("userId");
+
+        if (userId == null) {
             return "redirect:/login";
         }
 
-        model.addAttribute("username", username);
-
+        List<FriendDto> friendList = friendService.getFriendsByUserId(userId);
+        System.out.println(friendList.size());
+        model.addAttribute("friendList", friendList);
 
         return "home";
     }

@@ -18,10 +18,7 @@
             
             <input type="submit" value="로그인">
         </form>
-    </div>
-    <script>
-        var errorMessage = '<%= request.getAttribute("error") %>';
-    </script>    
+    </div>   
     <script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
 </body>
 </html>

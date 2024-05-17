@@ -25,11 +25,11 @@
         <div class="section">
             <h3>친구목록 리스트</h3>
             <ul>
-                <c:forEach var="friend" items="${friendsList}">
+                <c:forEach var="friend" items="${friendList}">
                     <li>
-                        ${friend}
-                        <form action="createChatRoom.jsp" method="post" style="display:inline;">
-                            <input type="hidden" name="friendName" value="${friend}">
+                        ${friend.friendId}
+                        <form action="createChatRoom" method="post" style="display:inline;">
+                            <input type="hidden" name="friendId" value="${friend.friendId}">
                             <button type="submit">대화방 생성</button>
                         </form>
                     </li>

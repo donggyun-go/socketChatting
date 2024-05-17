@@ -27,15 +27,10 @@ public class LoginController {
                                 HttpServletRequest request) {
         if (loginService.validateUser(userId, userPass)) {
         	loginService.storeSessionById(userId, request);
-            return "redirect:/home"; 
+            return "redirect:/home/"; 
         } else {
             request.setAttribute("error", "Invalid username or password");
             return "login"; 
         }
-    }
-
-    @GetMapping("/home")
-    public String home() {
-        return "home"; 
     }
 }
