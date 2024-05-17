@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dg.chatting.mapper.LoginMapper">
+    <resultMap id="UserResultMap" type="com.dg.chatting.dto.UserDto">
+        <id property="userId" column="user_id"/>
+        <result property="userPass" column="user_pass"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="userName" column="user_name"/>
+    </resultMap>
+
+    <select id="selectUserById" parameterType="string" resultMap="UserResultMap">
+        SELECT user_id, user_pass, user_email, user_name
+        FROM users
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="validateUser" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM users WHERE user_id = #{username} AND user_pass = #{password}
+    </select>
+</mapper>
