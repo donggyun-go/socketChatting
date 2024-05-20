@@ -20,4 +20,14 @@ public class FriendServiceImpl implements FriendService {
         return friendDao.getFriendsByUserId(userId);
     }
 
+    @Override
+    public List<FriendDto> searchFriend(String searchId) {
+        return friendDao.searchFriend(searchId);
+    }
+
+    @Override
+    public void addFriend(String friendId) {
+        friendDao.addFriend(friendId);
+    }
+
 }

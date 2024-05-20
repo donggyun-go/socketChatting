@@ -13,9 +13,9 @@
         <h2>메인페이지</h2>
         <p>${sessionScope.userName}님 안녕하세요</p>
         
-        <div class="section">
+       <div class="section">
             <h3>친구찾기</h3>
-            <form action="searchFriend" method="post">
+            <form onsubmit="openSearchPopup(); return false;">
                 <label for="searchId">ID or Email:</label>
                 <input type="text" id="searchId" name="searchId">
                 <button type="submit">친구찾기</button>
@@ -27,7 +27,7 @@
             <ul>
                 <c:forEach var="friend" items="${friendList}">
                     <li>
-                        ${friend.friendId}
+                        ${friend.friendName}
                         <form action="createChatRoom" method="post" style="display:inline;">
                             <input type="hidden" name="friendId" value="${friend.friendId}">
                             <button type="submit">대화방 생성</button>
@@ -47,6 +47,6 @@
         </div>
     </div>
     
-    <script src="js/script.js"></script>
+    <script src="js/home.js"></script>
 </body>
 </html>

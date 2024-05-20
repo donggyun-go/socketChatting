@@ -6,4 +6,8 @@ import com.dg.chatting.dto.FriendDto;
 
 public interface FriendDao {
 	List<FriendDto> getFriendsByUserId(String userId);
+
+	List<FriendDto> searchFriend(String searchId);
+
+	void addFriend(String friendId);
 }

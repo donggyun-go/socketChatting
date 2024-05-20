@@ -21,5 +21,16 @@ public class FriendDaoImpl implements FriendDao {
     public List<FriendDto> getFriendsByUserId(String userId) {
         return sqlSession.selectList(NAMESPACE + ".getFriendsByUserId", userId);
     }
+
+	@Override
+	public List<FriendDto> searchFriend(String searchId) {
+		return sqlSession.selectList(NAMESPACE + ".getSearchFriend", searchId);
+	}
+
+	@Override
+	public void addFriend(String friendId) {
+		sqlSession.insert(NAMESPACE+ ".addFriend", friendId);
+		
+	}
 	
 }

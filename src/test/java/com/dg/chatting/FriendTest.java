@@ -34,8 +34,8 @@ class FriendTest {
     void setUp() {
         userId = "user1";
         mockFriends = new ArrayList<>();
-        mockFriends.add(new FriendDto(userId, "user2", new Timestamp(System.currentTimeMillis())));
-        mockFriends.add(new FriendDto(userId, "user3", new Timestamp(System.currentTimeMillis())));
+        mockFriends.add(new FriendDto(userId, "user2", "User Two", new Timestamp(System.currentTimeMillis())));
+        mockFriends.add(new FriendDto(userId, "user3", "User Three", new Timestamp(System.currentTimeMillis())));
     }
 
     @Test
@@ -49,6 +49,8 @@ class FriendTest {
         // then
         assertEquals(2, friends.size());
         assertEquals("user2", friends.get(0).getFriendId());
+        assertEquals("User Two", friends.get(0).getFriendName());
         assertEquals("user3", friends.get(1).getFriendId());
+        assertEquals("User Three", friends.get(1).getFriendName());
     }
 }
