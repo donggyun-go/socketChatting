@@ -17,4 +17,8 @@
         JOIN users u ON f.friend_id = u.user_id
         WHERE f.user_id = #{userId}
     </select>
+		<insert id="addFriend" parameterType="com.dg.chatting.dto.FriendDto">
+	    INSERT INTO friends (user_id, friend_id, created_at)
+	    VALUES (#{userId}, #{friendId}, #{createdAt});
+	</insert>
 </mapper>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dg.chatting.dto.FriendDto;
+import com.dg.chatting.dto.UserDto;
 import com.dg.chatting.repository.FriendDao;
 import com.dg.chatting.service.FriendService;
 
@@ -21,13 +22,18 @@ public class FriendServiceImpl implements FriendService {
     }
 
     @Override
-    public List<FriendDto> searchFriend(String searchId) {
-        return friendDao.searchFriend(searchId);
+    public List<UserDto> searchFriend(String userId) {
+        return friendDao.searchFriend(userId);
     }
 
     @Override
-    public void addFriend(String friendId) {
-        friendDao.addFriend(friendId);
+    public void addFriend(FriendDto friendDto) {
+        friendDao.addFriend(friendDto);
     }
+
+	@Override
+	public FriendDto getFriendByUserId(String userId) {
+		return friendDao.getFriendByUserId(userId);
+	}
 
 }

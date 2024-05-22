@@ -16,8 +16,8 @@
        <div class="section">
             <h3>친구찾기</h3>
             <form onsubmit="openSearchPopup(); return false;">
-                <label for="searchId">ID or Email:</label>
-                <input type="text" id="searchId" name="searchId">
+                <label for="userId">ID or Email:</label>
+                <input type="text" id="userId" name="userId">
                 <button type="submit">친구찾기</button>
             </form>
         </div>
@@ -46,7 +46,13 @@
             </ul>
         </div>
     </div>
-    
-    <script src="js/home.js"></script>
+    <script>
+        function openSearchPopup() {
+            var userId = document.getElementById("userId").value;
+            var contextPath = '${pageContext.request.contextPath}';
+            var popup = window.open(contextPath + '/home/searchFriendResult?userId=' + userId, 'searchFriendPopup', 'width=600,height=400');
+            return false;
+        }
+    </script>
 </body>
 </html>

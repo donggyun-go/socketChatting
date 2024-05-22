@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dg.chatting.dto.FriendDto;
+import com.dg.chatting.dto.UserDto;
 import com.dg.chatting.repository.FriendDao;
 
 @Repository
@@ -23,14 +24,19 @@ public class FriendDaoImpl implements FriendDao {
     }
 
 	@Override
-	public List<FriendDto> searchFriend(String searchId) {
-		return sqlSession.selectList(NAMESPACE + ".getSearchFriend", searchId);
+	public List<UserDto> searchFriend(String userId) {
+		return sqlSession.selectList("com.dg.chatting.mapper.LoginMapper.selectUserById", userId);
 	}
 
 	@Override
-	public void addFriend(String friendId) {
-		sqlSession.insert(NAMESPACE+ ".addFriend", friendId);
+	public void addFriend(FriendDto friendDto) {
+		sqlSession.insert(NAMESPACE+ ".addFriend", friendDto);
 		
+	}
+
+	@Override
+	public FriendDto getFriendByUserId(String userId) {
+		return sqlSession.selectOne(NAMESPACE + ".getFriendsByUserId", userId);
 	}
 	
 }

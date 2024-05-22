@@ -5,6 +5,27 @@
 <head>
     <title>Search Friend</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/login.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        function addFriend(friendId) {
+            $.ajax({
+                url: '${pageContext.request.contextPath}/home/addFriend',
+                type: 'POST',
+                data: { friendId: friendId },
+                success: function(response) {
+                    if (response.friendAddSuccess) {
+                        alert('친구 추가 성공!');
+                        window.close(); 
+                    } else {
+                        alert('친구 추가 실패. 다시 시도하세요.');
+                    }
+                },
+                error: function() {
+                    alert('친구 추가 중 오류가 발생했습니다. 다시 시도하세요.');
+                }
+            });
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -20,11 +41,8 @@
             <ul>
                 <c:forEach var="friend" items="${searchResults}">
                     <li>
-                        ${friend.userName} (${friend.email})
-                        <form action="addFriend" method="post" style="display:inline;">
-                            <input type="hidden" name="friendId" value="${friend.userId}">
-                            <button type="submit">친구추가</button>
-                        </form>
+                        ${friend.userName} (${friend.userEmail})
+                        <button type="button" onclick="addFriend('${friend.userId}')">친구추가</button>
                     </li>
                 </c:forEach>
             </ul>
